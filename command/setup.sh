@@ -3,7 +3,7 @@ chmod +x /root/airchain-rollup/command/config/config.sh
 chmod +x /root/airchain-rollup/command/config/station.sh
 
 # Run the first script
-./config/config.sh
+/root/airchain-rollup/command/config/config.sh
 
 # Check if the first script executed successfully
 if [ $? -ne 0 ];    then
@@ -12,7 +12,7 @@ if [ $? -ne 0 ];    then
 fi
 
 # Run the second script
-./config/station.sh
+/root/airchain-rollup/command/config/station.sh
 
 # Check if the second script executed successfully
 if [ $? -ne 0 ]; then

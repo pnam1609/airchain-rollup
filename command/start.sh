@@ -3,7 +3,7 @@ chmod +x /root/airchain-rollup/command/start/create-station.sh
 chmod +x /root/airchain-rollup/command/start/script-transfer.sh
 
 # Run the first script
-./start/create-station.sh
+/root/airchain-rollup/command/start/create-station.sh
 
 # Check if the first script executed successfully
 if [ $? -ne 0 ];    then
@@ -12,7 +12,7 @@ if [ $? -ne 0 ];    then
 fi
 
 # Run the second script
-./start/script-transfer.sh
+/root/airchain-rollup/command/start/script-transfer.sh
 
 # Check if the second script executed successfully
 if [ $? -ne 0 ]; then
