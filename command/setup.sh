@@ -1,6 +1,6 @@
 #!/bin/bash
-chmod +x ./config/config.sh
-chmod +x ./config/station.sh
+chmod +x /root/airchain-rollup/command/config/config.sh
+chmod +x /root/airchain-rollup/command/config/station.sh
 
 # Run the first script
 ./config/config.sh
