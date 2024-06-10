@@ -18,9 +18,11 @@ source /root/.bashrc
 
 cd /root/evm-station
 go mod tidy
+cd /root/evm-station
 /bin/bash ./scripts/local-setup.sh
 sed -i 's/address = "127.0.0.1:8545"/address = "0.0.0.0:8545"/g' /root/.evmosd/config/app.toml
 tmux new-session -d -s 0
+tmux send-keys -t 0 'cd /root/evm-station' C-m
 tmux send-keys -t 0 '/bin/bash ./scripts/local-start.sh' C-m
 
 sleep 5
