@@ -1,5 +1,5 @@
 const { Web3 } = require("web3");
-// require("dotenv").config();
+require("dotenv").config();
 
 const rpcUrl = process.env.RPC_EVM;
 const receiverAddress = process.env.RECEIVER_ADDRESS;
@@ -55,7 +55,7 @@ async function sendTransaction() {
     const createReceipt = await web3.eth.sendSignedTransaction(
       createTransaction.rawTransaction
     );
-    console.log(`Transaction sent with hash: ${JSON.stringify(createReceipt)}`);
+    console.log(`Transaction sent with hash: ${createReceipt}`);
     return createReceipt;
   } catch (e) {
     console.log(`An error occurred: ${e}`);
