@@ -38,7 +38,7 @@ cp /root/.tracks/junction-accounts/keys/${MONIKER}.wallet.json /root
 go run cmd/main.go prover v1EVM
 export NODEID=$(sudo grep 'node_id' /root/.tracks/config/sequencer.toml | awk -F'=' '{print $2}' | tr -d ' "')
 echo "export NODEID=$NODEID" >> /root/.bashrc
-echo "export    =$(jq -r '.address' /root/.tracks/junction-accounts/keys/${MONIKER}.wallet.json)" >> ~/.bashrc
+echo "export ADDRESS=$(jq -r '.address' /root/.tracks/junction-accounts/keys/${MONIKER}.wallet.json)" >> ~/.bashrc
 source /root/.bashrc
 
 echo "Get the Address to faucet"
