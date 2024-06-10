@@ -1,7 +1,6 @@
 #!/bin/bash
-chmod +x start.sh
-chmod +x config/config.sh
-chmod +x config/station.sh
+chmod +x ./config/config.sh
+chmod +x ./config/station.sh
 
 # Run the first script
 ./config/config.sh

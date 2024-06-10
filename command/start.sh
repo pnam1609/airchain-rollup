@@ -1,6 +1,6 @@
 #!/bin/bash
-chmod +x start/create-station.sh
-chmod +x start/script-transfer.sh
+chmod +x ./start/create-station.sh
+chmod +x ./start/script-transfer.sh
 
 # Run the first script
 ./start/create-station.sh
