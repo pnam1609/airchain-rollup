@@ -33,6 +33,8 @@ web3.eth.net
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 const senderAddress = account.address;
 
+console.log('senderAddress', senderAddress)
+
 async function sendTransaction() {
   try {
     const nonce = await web3.eth.getTransactionCount(senderAddress);
@@ -60,6 +62,7 @@ async function sendTransaction() {
 async function main() {
   while (true) {
     for (let i = 0; i < 25; i++) {
+      console.log('index', i)
       await sendTransaction();
     }
     console.log("Waiting 3 seconds before restarting the loop...");
