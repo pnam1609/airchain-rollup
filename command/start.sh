@@ -1,21 +1,15 @@
 #!/bin/bash
-chmod +x /root/airchain-rollup/command/start/create-station.sh
-chmod +x /root/airchain-rollup/command/start/script-transfer.sh
 
 # Run the first script
-/root/airchain-rollup/command/start/create-station.sh
-
-# Check if the first script executed successfully
-if [ $? -ne 0 ];    then
-  echo "create-station.sh failed"
-  exit 1
-fi
+## create station and start: Need facuet first
+cd /root/tracks
+go run cmd/main.go create-station --accountName $MONIKER --accountPath $HOME/.tracks/junction-accounts/keys --jsonRPC $RPC_AIR --info "EVM Track" --tracks $ADDRESS --bootstrapNode "/ip4/$USERIP/tcp/2300/p2p/$NODEID"
+cd /root/tracks
+tmux new-session -d -s 1
+tmux send-keys -t 1 'go run cmd/main.go start' C-m
 
 # Run the second script
-/root/airchain-rollup/command/start/script-transfer.sh
+sleep 10
+cd /root/airchain-rollup
+npm run start
 
-# Check if the second script executed successfully
-if [ $? -ne 0 ]; then
-  echo "script-transfer.sh failed"
-  exit 1
-fi
