@@ -33,26 +33,30 @@ web3.eth.net
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 const senderAddress = account.address;
 
-console.log('senderAddress', senderAddress)
+console.log("senderAddress", senderAddress);
 
 async function sendTransaction() {
   try {
-    const nonce = await web3.eth.getTransactionCount(senderAddress);
-    const tx = {
-      chainId: 0x4d2, // Ensure this chain ID is correct
-      nonce: nonce,
-      to: receiverAddress,
-      value: web3.utils.toWei("1", "ether"),
-      gas: 21000,
-      gasPrice: web3.utils.toWei("50", "gwei"),
-    };
+    // const nonce = await web3.eth.getTransactionCount(senderAddress, "pending");
+    // console.log(`Fetched nonce: ${nonce}`);
 
-    const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey);
-    const txHash = await web3.eth.sendSignedTransaction(
-      signedTx.rawTransaction
+    const createTransaction = await web3.eth.accounts.signTransaction(
+      {
+        gas: 21000,
+        to: receiverAddress,
+        value: web3.utils.toWei("1", "ether"),
+        gasPrice: await web3.eth.getGasPrice(),
+        nonce: await web3.eth.getTransactionCount(senderAddress),
+      },
+      privateKey
     );
-    console.log(`Transaction sent with hash: ${JSON.stringify(txHash)}`);
-    return txHash;
+
+    // 5. Send transaction and wait for receipt
+    const createReceipt = await web3.eth.sendSignedTransaction(
+      createTransaction.rawTransaction
+    );
+    console.log(`Transaction sent with hash: ${JSON.stringify(createReceipt)}`);
+    return createReceipt;
   } catch (e) {
     console.log(`An error occurred: ${e}`);
     return null;
@@ -62,7 +66,7 @@ async function sendTransaction() {
 async function main() {
   while (true) {
     for (let i = 0; i < 25; i++) {
-      console.log('index', i)
+      console.log("index", i);
       await sendTransaction();
     }
     console.log("Waiting 3 seconds before restarting the loop...");
