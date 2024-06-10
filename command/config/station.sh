@@ -10,7 +10,7 @@ echo "export PRIVATE_KEY=$(/bin/bash ./scripts/local-keys.sh )" >> /root/.bashrc
 source /root/.bashrc
 cd
 sudo rm -rf ~/.tracks
-cd tracks
+cd /root/tracks
 go mod tidy
 go run cmd/main.go init --daRpc $RPC_DA --daKey "daKey" --daType $DA_TYPE --moniker $MONIKER --stationRpc "http://127.0.0.1:8545" --stationAPI "http://127.0.0.1:8545" --stationType "evm"
 go run cmd/main.go keys junction --accountName $MONIKER --accountPath $HOME/.tracks/junction-accounts/keys
